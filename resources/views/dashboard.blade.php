@@ -1,17 +1,30 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
+<x-admin-layout>
+    <div class="mb-6 flex justify-between items-center">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900">Inventory Management</h1>
+            <p class="text-gray-500 text-sm mt-1">Kelola data alat grill dan paket BBQ Nyalse.</p>
         </div>
+        <button class="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-lg font-semibold text-sm transition">
+            + Tambah Alat
+        </button>
     </div>
-</x-app-layout>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        
+        @php
+            // Ini data dummy murni untuk ngetes tampilan komponenmu
+            $dummyProduct = (object) [
+                'title' => 'Paket Grill Sultan',
+                'description' => 'Panggangan besar lengkap dengan capitan, arang, dan kuas.',
+                'price' => 75000,
+                'image' => null,
+                'tags' => [(object)['name' => 'Paket Lengkap'], (object)['name' => 'Terlaris']]
+            ];
+        @endphp
+
+        <x-product-card :product="$dummyProduct" />
+        <x-product-card :product="$dummyProduct" />
+        <x-product-card :product="$dummyProduct" />
+
+    </div>
+</x-admin-layout>
